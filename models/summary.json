@@ -1,0 +1,94 @@
+{
+  "best_model": "Logistic Regression",
+  "results": {
+    "Logistic Regression": {
+      "roc_auc": 0.7599,
+      "f1_score": 0.5622,
+      "precision_churn": 0.4738,
+      "recall_churn": 0.6912
+    },
+    "Random Forest": {
+      "roc_auc": 0.7577,
+      "f1_score": 0.5382,
+      "precision_churn": 0.4939,
+      "recall_churn": 0.5912
+    },
+    "Gradient Boosting": {
+      "roc_auc": 0.7507,
+      "f1_score": 0.4353,
+      "precision_churn": 0.601,
+      "recall_churn": 0.3412
+    }
+  },
+  "insights": {
+    "churn_rate_overall": 0.284,
+    "churn_rate_month_to_month": 0.404,
+    "churn_rate_two_year": 0.106,
+    "churn_rate_fiber": 0.39,
+    "churn_rate_electronic_check": 0.315,
+    "avg_tenure_churned": 25.5,
+    "avg_tenure_retained": 30.2
+  },
+  "top_features": [
+    {
+      "feature": "cat__Contract_Two year",
+      "importance": 0.13947485648900704
+    },
+    {
+      "feature": "num__MonthlyCharges",
+      "importance": 0.13838105271123052
+    },
+    {
+      "feature": "num__TotalCharges",
+      "importance": 0.10589483944791234
+    },
+    {
+      "feature": "num__tenure",
+      "importance": 0.09764352610981822
+    },
+    {
+      "feature": "cat__Contract_One year",
+      "importance": 0.09253789314635212
+    },
+    {
+      "feature": "num__SupportTickets6mo",
+      "importance": 0.08607065891697334
+    },
+    {
+      "feature": "cat__InternetService_Fiber optic",
+      "importance": 0.08236897024827006
+    },
+    {
+      "feature": "cat__PaperlessBilling_Yes",
+      "importance": 0.026229156408793655
+    },
+    {
+      "feature": "cat__OnlineSecurity_Yes",
+      "importance": 0.020738439360751336
+    },
+    {
+      "feature": "cat__TechSupport_Yes",
+      "importance": 0.020041362086497278
+    },
+    {
+      "feature": "cat__Partner_Yes",
+      "importance": 0.015256830105456122
+    },
+    {
+      "feature": "cat__PaymentMethod_Electronic check",
+      "importance": 0.015202247054711014
+    },
+    {
+      "feature": "cat__gender_Male",
+      "importance": 0.014152614652723348
+    },
+    {
+      "feature": "cat__Dependents_Yes",
+      "importance": 0.0135520324193626
+    },
+    {
+      "feature": "cat__PaymentMethod_Credit card (automatic)",
+      "importance": 0.013097361689727124
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Customer Churn Predictor</title>
+<style>
+  body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; margin:0; padding: 30px; }
+  .container { max-width: 900px; margin: 0 auto; background: #1e293b; border-radius: 12px; padding: 30px 40px; }
+  h1 { color: #38bdf8; margin-bottom: 4px; }
+  p.subtitle { color: #94a3b8; margin-top: 0; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+  label { font-size: 13px; color: #94a3b8; display:block; margin-bottom:4px; }
+  select, input { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #e2e8f0; box-sizing: border-box; }
+  .full { grid-column: 1 / -1; }
+  button { grid-column: 1 / -1; padding: 12px; background: #38bdf8; color: #0f172a; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; margin-top: 10px; }
+  button:hover { background: #0ea5e9; }
+  .result { margin-top: 24px; padding: 20px; border-radius: 10px; font-size: 18px; text-align: center; }
+  .risk { background: #7f1d1d; color: #fecaca; }
+  .safe { background: #14532d; color: #bbf7d0; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Customer Churn Predictor</h1>
+  <p class="subtitle">Enter customer details to estimate churn risk (Logistic Regression, ROC-AUC 0.76)</p>
+
+  <form method="POST">
+    {% for field in fields %}
+      <div>
+        <label>{{ field }}</label>
+        {% if field in options %}
+          <select name="{{ field }}">
+            {% for opt in options[field] %}
+              <option value="{{ opt }}">{{ opt }}</option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="number" step="any" name="{{ field }}" value="{% if field=='tenure' %}12{% elif field=='MonthlyCharges' %}70{% elif field=='TotalCharges' %}840{% else %}0{% endif %}" required>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <button type="submit">Predict Churn Risk</button>
+  </form>
+
+  {% if prediction %}
+    <div class="result {{ 'risk' if 'High' in prediction else 'safe' }}">
+      <strong>{{ prediction }}</strong><br>
+      Churn Probability: {{ probability }}%
+    </div>
+  {% endif %}
+</div>
+</body>
+</html>
