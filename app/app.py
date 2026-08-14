@@ -41,6 +41,31 @@ OPTIONS = {
                        "Bank transfer (automatic)", "Credit card (automatic)"],
 }
 
+# Human-friendly labels shown on the form (actual field keys stay unchanged
+# so the model, which was trained on these exact column names, still works)
+LABELS = {
+    "gender": "Gender",
+    "SeniorCitizen": "Senior Citizen",
+    "Partner": "Partner",
+    "Dependents": "Dependents",
+    "tenure": "Tenure (months)",
+    "PhoneService": "Phone Service",
+    "MultipleLines": "Multiple Lines",
+    "InternetService": "Internet Service",
+    "OnlineSecurity": "Online Security",
+    "OnlineBackup": "Online Backup",
+    "DeviceProtection": "Device Protection",
+    "TechSupport": "Tech Support",
+    "StreamingTV": "Streaming TV",
+    "StreamingMovies": "Streaming Movies",
+    "Contract": "Contract",
+    "PaperlessBilling": "Paperless Billing",
+    "PaymentMethod": "Payment Method",
+    "MonthlyCharges": "Monthly Charges",
+    "TotalCharges": "Total Charges",
+    "SupportTickets6mo": "Support Tickets (6 months)",
+}
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     prediction = None
@@ -57,7 +82,7 @@ def index():
         prediction = "High Risk of Churn" if proba >= 0.5 else "Likely to Stay"
         probability = round(proba * 100, 1)
 
-    return render_template("index.html", fields=FIELDS, options=OPTIONS,
+    return render_template("index.html", fields=FIELDS, options=OPTIONS, labels=LABELS,
                             prediction=prediction, probability=probability)
 
 if __name__ == "__main__":
