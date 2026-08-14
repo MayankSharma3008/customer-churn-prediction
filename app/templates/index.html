@@ -27,7 +27,7 @@
   <form method="POST">
     {% for field in fields %}
       <div>
-        <label>{{ field }}</label>
+        <label>{{ labels[field] }}</label>
         {% if field in options %}
           <select name="{{ field }}">
             {% for opt in options[field] %}
